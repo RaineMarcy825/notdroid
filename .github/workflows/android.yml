@@ -22,6 +22,9 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build apk
-      uses: gradle/actions/setup-gradle@v3
+      run: ./gradlew assembleRelease
+    - name: Pack and Upload apk
+      uses: actions/upload-artifact@v4
       with:
-        arguments: build
+        name: droid-apk
+        path: build/outputs/apk/release/app-release.apk
